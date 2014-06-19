@@ -18,7 +18,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Celibattante\UploadBundle\CelibattanteUploadBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Celibattante\UserBundle\CelibattanteUserBundle()
+            new Celibattante\UserBundle\CelibattanteUserBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -51,27 +51,37 @@ class Upload
 
     public function upload()
     {   
-    // la propriété « file » peut être vide si le champ n'est pas requis
-    if (null === $this->file) {
-        return;
-    }
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->file) {
+            return;
+        }
 
-    // utilisez le nom de fichier original ici mais
-    // vous devriez « l'assainir » pour au moins éviter
-    // quelconques problèmes de sécurité
-    
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
 
-    // la méthode « move » prend comme arguments le répertoire cible et
-    // le nom de fichier cible où le fichier doit être déplacé
-    $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+        // la méthode « move » prend comme arguments le répertoire cible et
+        // le nom de fichier cible où le fichier doit être déplacé
+        // $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
 
-    // définit la propriété « path » comme étant le nom de fichier où vous
-    // avez stocké le fichier
-    $this->path = $this->file->getClientOriginalName();
+        // $this->path = $this->file->getClientOriginalName();
 
+        // $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
 
-    // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
-    $this->file = null;
+        // générer un nom aléatoire et essayer de deviner l'extension (plus sécurisé)
+        $extension = $this->file->guessExtension();
+        if (!$extension) {
+            // l'extension n'a pas été trouvée
+            $extension = 'bin';
+        }
+
+        $fileName = time().'.'.$extension;
+        $this->file->move($this->getUploadRootDir(), $fileName);
+
+        $this->path = $fileName;
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->file = null;
     }
 
 
