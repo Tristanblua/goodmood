@@ -20,7 +20,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "jms/serializer": "0.15.*@dev",
-        "jms/serializer-bundle": "0.13.*@dev"
+        "jms/serializer-bundle": "0.13.*@dev",
+        "pulse00/ffmpeg-bundle": "0.2.3"
+        
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

@@ -62,11 +62,6 @@ class Upload
 
         // la méthode « move » prend comme arguments le répertoire cible et
         // le nom de fichier cible où le fichier doit être déplacé
-        // $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
-
-        // $this->path = $this->file->getClientOriginalName();
-
-        // $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
 
         // générer un nom aléatoire et essayer de deviner l'extension (plus sécurisé)
         $extension = $this->file->guessExtension();
@@ -78,10 +73,21 @@ class Upload
         $fileName = time().'.'.$extension;
         $this->file->move($this->getUploadRootDir(), $fileName);
 
-        $this->path = $fileName;
+        $this->path = $this->getUploadRootDir() . '/' . $fileName;
 
         // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
         $this->file = null;
+
+        echo $this->path;
+
+        // try {
+        //     shell_exec("ffmpeg -i ".$fileName."  -t 60 -s 320x240 -acodec mp3 -b 256 -er 4 -ar 22050 -f mp4 -y ".$this->getUploadRootDir() ."/output.mp4");
+        // } catch (Exception $e) {
+        //     var_dump($e);
+        // }
+        
+        // echo 'pass';
+        // die();
     }
 
 

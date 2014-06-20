@@ -11,12 +11,15 @@ use Celibattante\UploadBundle\Entity\Upload;
 
 class UploadController extends Controller
 {
+
+
+
     /**
      * @Route("/upload")
      * @Template()
      */
     public function uploadAction()
-    {
+    {   
         $document = new Upload;
         $form = $this->createFormBuilder($document)
             ->add('title')
@@ -67,7 +70,9 @@ class UploadController extends Controller
 
         // return $response;
     }
+       
 }
+
 
 
 
