@@ -78,16 +78,11 @@ class Upload
         // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
         $this->file = null;
 
-        echo $this->path;
+        // echo 'Vidéo enregistrée';
 
-        // try {
-        //     shell_exec("ffmpeg -i ".$fileName."  -t 60 -s 320x240 -acodec mp3 -b 256 -er 4 -ar 22050 -f mp4 -y ".$this->getUploadRootDir() ."/output.mp4");
-        // } catch (Exception $e) {
-        //     var_dump($e);
-        // }
-        
-        // echo 'pass';
-        // die();
+        $cmd = "ffmpeg -i ". $this->path ." -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 ". $this->getUploadRootDir() ."/output.mp4";
+        echo $cmd;
+        echo shell_exec($cmd);
     }
 
 
