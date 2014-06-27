@@ -21,7 +21,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "jms/serializer": "0.15.*@dev",
         "jms/serializer-bundle": "0.13.*@dev",
-        "pulse00/ffmpeg-bundle": "0.2.3"
+        "pulse00/ffmpeg-bundle": "0.2.3",
+        "friendsofsymfony/oauth-server-bundle": "1.4.*@dev"
         
     },
     "require-dev": {

@@ -16,10 +16,12 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Celibattante\UploadBundle\CelibattanteUploadBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Celibattante\UserBundle\CelibattanteUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Celibattante\ChallengeBundle\ChallengeBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new Celibattante\OAuthServerBundle\CelibattanteOAuthServerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
