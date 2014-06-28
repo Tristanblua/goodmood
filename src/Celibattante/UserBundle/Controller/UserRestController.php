@@ -16,4 +16,10 @@ class UserRestController extends Controller
         }
         return $user;
     }
+
+
+    public function getMeAction(){
+        $this->forwardIfNotAuthenticated();
+        return $this->getUser();
+    }
 }
