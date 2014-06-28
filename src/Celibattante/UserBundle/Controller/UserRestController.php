@@ -22,4 +22,6 @@ class UserRestController extends Controller
         $this->forwardIfNotAuthenticated();
         return $this->getUser();
     }
+
+
 }
