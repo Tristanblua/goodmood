@@ -20,8 +20,7 @@ class AppKernel extends Kernel
             new Celibattante\UserBundle\CelibattanteUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Celibattante\ChallengeBundle\ChallengeBundle(),
-            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
-            new Celibattante\OAuthServerBundle\CelibattanteOAuthServerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

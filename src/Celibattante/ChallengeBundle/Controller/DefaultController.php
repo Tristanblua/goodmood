@@ -62,12 +62,8 @@ class DefaultController extends Controller
 
         $serializer = $this->container->get('serializer');
         $reports = $serializer->serialize($videos, 'json');
-        return new Response($reports); // should be $reports as $doctrine
+        return new Response($reports); 
 
-        // $response = new JsonResponse();
-        // $response->setData($videos);
-
-        // return $response;
     }
 
     /**
@@ -80,7 +76,6 @@ class DefaultController extends Controller
         $user = $this->getDoctrine()
             ->getRepository('CelibattanteUserBundle:User')
             ->findByGenre('M');
-        //die("passe");
         if (!$user) {
             throw $this->createNotFoundException('Aucun utilisateur trouvé');
         }
@@ -101,14 +96,40 @@ class DefaultController extends Controller
         $user = $this->getDoctrine()
             ->getRepository('CelibattanteUserBundle:User')
             ->findByGenre('F');
-        //die("passe");
         if (!$user) {
             throw $this->createNotFoundException('Aucun utilisateur trouvé');
         }
 
         $serializer = $this->container->get('serializer');
         $reports = $serializer->serialize($user, 'json');
-        return new Response($reports); // should be $reports as $doctrine
+        return new Response($reports);
+
+    }
+
+    /**
+    * @Route("/listChallengeLaunched")
+    * @Template()
+    */
+    public function listChallengeLaunchedAction()
+    {
+
+        $challengeLaunched = $this->getDoctrine()
+            ->getRepository('CelibattanteChallengeBundle:ChallengeLaunched')
+            ->findBy(
+                array('user_id' => '')
+                )
+            ->getRepository('CelibattanteUserBundle:User')
+            ->findBy(
+                array('id' => ''),
+                array('genre' => 'F')
+              );
+        if (!$challengeLaunched) {
+            throw $this->createNotFoundException('Aucun utilisateur trouvé');
+        }
+
+        $serializer = $this->container->get('serializer');
+        $reports = $serializer->serialize($challengeLaunched, 'json');
+        return new Response($reports);
 
     }
 }

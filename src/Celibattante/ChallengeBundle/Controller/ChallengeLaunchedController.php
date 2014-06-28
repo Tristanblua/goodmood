@@ -20,7 +20,6 @@ class ChallengeLaunchedController extends Controller
         $form = $this->createFormBuilder($document)
             ->add('description')
             ->add('creation_date')
-            ->add('count')
             ->add('file')
             ->getForm();
 
