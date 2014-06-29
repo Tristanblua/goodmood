@@ -24,3 +24,8 @@ class UserRestController extends Controller
         }
         return $women;
     }
+
+    public function postChallengeLaunchedAction(){
+        
+    }
+}
