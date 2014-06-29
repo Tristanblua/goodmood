@@ -2,3 +2,8 @@ users :
   type: rest
   resource:     "CelibattanteUserBundle:UserRest"
   name_prefix:  api_
+
+challenges :
+  type: rest
+  resource:     "ChallengeBundle:ChallengeRest"
+  name_prefix:  api_

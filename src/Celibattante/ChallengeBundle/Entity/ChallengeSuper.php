@@ -4,9 +4,16 @@ namespace Celibattante\ChallengeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+
 
 /** 
-* @ORM\MappedSuperclass 
+* @ORM\MappedSuperclass
+*
+* @ExclusionPolicy("all")
 */
 class ChallengeSuper
 {
@@ -14,6 +21,7 @@ class ChallengeSuper
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=140)
+     * @Expose
      */
     private $description;
 
@@ -21,6 +29,7 @@ class ChallengeSuper
      * @var string
      *
      * @ORM\Column(name="path", type="string", length=255)
+     * @Expose
      */
 
     public $path;
@@ -29,6 +38,7 @@ class ChallengeSuper
      * @var string
      *
      * @ORM\Column(name="creation_date", type="date")
+     * @Expose
      */
 
     public $creation_date;
@@ -38,6 +48,7 @@ class ChallengeSuper
      * @var string
      *
      * @ORM\Column(name="count", type="integer")
+     * @Expose
      */
 
     public $count;
@@ -49,7 +60,6 @@ class ChallengeSuper
 
     public function upload()
     {   
-        // la propriété « file » peut être vide si le champ n'est pas requis
         if (null === $this->file) {
             return;
         }

@@ -4,11 +4,17 @@ namespace Celibattante\UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * 
  * @ORM\Table(name="user")
  * @ORM\Entity
+ * 
+ * @ExclusionPolicy("all") 
  */
 class User extends BaseUser
 {
@@ -16,6 +22,7 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
@@ -23,6 +30,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="genre", type="string", length=1)
+     * @Expose
      */
     private $genre;
 
@@ -30,6 +38,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=50)
+     * @Expose
      */
     private $city;
 
@@ -37,6 +46,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=500)
+     * @Expose
      */
     private $description;
 
@@ -44,16 +54,19 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="birthdate", type="date")
+     * @Expose
      */
     private $birthdate;
 
     /**
      * @ORM\OneToMany(targetEntity="Celibattante\ChallengeBundle\Entity\ChallengeLaunched", mappedBy="user")
+     * @Expose
      */
     private $challengeLaunched;
 
     /**
      * @ORM\OneToMany(targetEntity="Celibattante\ChallengeBundle\Entity\ChallengeRaised", mappedBy="user")
+     * @Expose
      */
     private $challengeRaised;
 
