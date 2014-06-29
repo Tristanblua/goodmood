@@ -31,6 +31,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="genre", type="string", length=1)
      * @Expose
+     * @Groups({"Details"})
      */
     private $genre;
 
