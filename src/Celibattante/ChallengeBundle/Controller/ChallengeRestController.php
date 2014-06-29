@@ -27,5 +27,43 @@ class ChallengeRestController extends Controller
         }
         return $ChallengeRaised;
     }
-    
+
+
+        public function postChallengeLaunchedAction(){
+
+            $men = $this->getDoctrine()->getRepository('CelibattanteUserBundle:User')->findByGenre("M");
+            if (!is_array($men)) {
+                throw $this->createNotFoundException();
+            }
+            return $men;
+
+            $request = $this->getRequest();
+            echo "pass";
+            var_dump($request);
+            exit();
+            $document = new Upload;
+            $form = $this->createFormBuilder($document)
+                ->add('title')
+                ->add('file')
+                ->add('text')
+                ->getForm();
+
+                if ($this->getRequest()->isMethod('POST')) {
+                    $form->bind($this->getRequest());
+                    if ($form->isValid()) {
+                        $em = $this->getDoctrine()->getManager();
+                        $document->upload();
+
+                        $em->persist($document);
+                        $em->flush();
+
+                        $this->redirect($this->generateUrl("celibattante_upload_upload_upload"));
+                    }
+                }
+
+
+
+        return array('form' => $form->createView());
+    }
+
 }

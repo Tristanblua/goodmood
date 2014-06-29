@@ -11,18 +11,18 @@ class UserRestController extends Controller
 {
 
     /**
-   * 
+   *
    * @param type $username
-   * 
+   *
    * @View(serializerGroups={"Default","Details"})
    */
     public function getUserAction($username){
         $user = $this->getRepository('UserBundle:User')->findOneByUsername($username);
-    
+
         if(!is_object($user)){
             throw $this->createNotFoundException();
         }
-    
+
         return $user;
     }
 
@@ -42,33 +42,4 @@ class UserRestController extends Controller
         return $women;
     }
 
-    public function postChallengeLaunchedAction(){
-        $request = $this->getRequest();
-        echo "pass";
-        var_dump($request);
-        exit();
-        $document = new Upload;
-        $form = $this->createFormBuilder($document)
-            ->add('title')
-            ->add('file')
-            ->add('text')
-            ->getForm();
-
-            if ($this->getRequest()->isMethod('POST')) {
-                $form->bind($this->getRequest());
-                if ($form->isValid()) {
-                    $em = $this->getDoctrine()->getManager();
-                    $document->upload();
-
-                    $em->persist($document);
-                    $em->flush();
-
-                    $this->redirect($this->generateUrl("celibattante_upload_upload_upload"));
-                }
-            }
-
-
-
-        return array('form' => $form->createView());
-    }
 }
