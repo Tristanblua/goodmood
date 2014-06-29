@@ -24,5 +24,8 @@ class UserRestController extends Controller
         return $this->getUser();
     }
 
+    public function postChallengeLaunchedAction(){
+        
+    }
 
 }
