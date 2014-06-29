@@ -4,12 +4,19 @@ namespace Celibattante\ChallengeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Celibattante\ChallengeBundle\Entity\ChallengeSuper as BaseChallenge;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+
 
 /**
  * ChallengeLaunched
  *
  * @ORM\Table(name="challenge_launched")
  * @ORM\Entity(repositoryClass="Celibattante\ChallengeBundle\Entity\ChallengeLaunchedRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class ChallengeLaunched extends BaseChallenge
 {
@@ -19,11 +26,13 @@ class ChallengeLaunched extends BaseChallenge
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Celibattante\UserBundle\Entity\User", inversedBy="challengeLaunched")
+     * @Expose
      */
     private $user;
 
@@ -31,6 +40,7 @@ class ChallengeLaunched extends BaseChallenge
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Expose
      */
     private $title;
 

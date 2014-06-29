@@ -4,12 +4,19 @@ namespace Celibattante\ChallengeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Celibattante\ChallengeBundle\Entity\ChallengeSuper as BaseChallenge;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+
 
 /**
  * ChallengeRaised
  *
  * @ORM\Table(name="challenge_raised")
  * @ORM\Entity(repositoryClass="Celibattante\ChallengeBundle\Entity\ChallengeRaisedRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class ChallengeRaised extends BaseChallenge
 {
