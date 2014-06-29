@@ -10,6 +10,7 @@ class UserRestController extends Controller
 {
     public function getUserAction($username)
     {
+        return 'user :' . $username;
         $user = $this->getRepository('UserBundle:User')->findOneByUsername($username);
         if (!is_object($user)) {
             throw $this->createNotFoundException();

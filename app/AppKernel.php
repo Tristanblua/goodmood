@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Celibattante\ChallengeBundle\ChallengeBundle(),
             new Celibattante\UserBundle\CelibattanteUserBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
