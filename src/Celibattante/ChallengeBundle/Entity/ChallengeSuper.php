@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Celibattante\ChallengeBundle\Entity;
 
@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 
 
-/** 
+/**
 * @ORM\MappedSuperclass
 *
 * @ExclusionPolicy("all")
@@ -58,8 +58,14 @@ class ChallengeSuper
      */
     public $file;
 
+
+    public function __construct() {
+        $this->creation_date = new \DateTime;
+        $this->count = 5;
+    }
+
     public function upload()
-    {   
+    {
         if (null === $this->file) {
             return;
         }
@@ -134,7 +140,7 @@ class ChallengeSuper
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -157,7 +163,7 @@ class ChallengeSuper
     /**
      * Get count
      *
-     * @return string 
+     * @return string
      */
     public function getCount()
     {
@@ -180,7 +186,7 @@ class ChallengeSuper
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -203,7 +209,7 @@ class ChallengeSuper
     /**
      * Get creation_date
      *
-     * @return string 
+     * @return string
      */
     public function getCreation_date()
     {
