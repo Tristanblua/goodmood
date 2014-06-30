@@ -37,7 +37,7 @@ class ChallengeRestController extends Controller
             }
             return $men;
 
-            $request = $this->getRequest();
+/*            $request = $this->getRequest();
             echo "pass";
             var_dump($request);
             exit();
@@ -63,7 +63,7 @@ class ChallengeRestController extends Controller
 
 
 
-        return array('form' => $form->createView());
+        return array('form' => $form->createView());*/
     }
 
 }
