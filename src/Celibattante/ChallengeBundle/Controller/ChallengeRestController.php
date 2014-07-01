@@ -8,6 +8,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Celibattante\ChallengeBundle\Entity\ChallengeLaunched;
 use Celibattante\ChallengeBundle\Entity\ChallengeRaised;
 use Celibattante\ChallengeBundle\Entity\ChallengeSuper;
+use JMS\Serializer\SerializerBuilder;
+
 
 class ChallengeRestController extends Controller
 {
@@ -48,9 +50,8 @@ class ChallengeRestController extends Controller
 
                 return $challengeLaunched;
             } else {
-                $serializer = JMS\Serializer\SerializerBuilder::create()->build();
-                $jsonError = $serializer->serialize($form->getErrors(), 'json');
-                return $jsonError;
+                $serializer = SerializerBuilder::create()->build();
+                return $form->getErrors();
             }
         } else  {
             throw $this->createNotFoundException();
