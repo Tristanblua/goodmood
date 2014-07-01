@@ -56,5 +56,3 @@ EOT
     }
 }
 
-
-http://symfo.dev/app_dev.php/oauth/v2/token?client_id=6_62yxhdac42gwcck0wk8kk4ks84wswgk44ko4cg4wsw4c4sowsk&client_secret=maqa75e9hyoooc008cg8ccc4s4gco8w80occo8gsg4cs0o000&grant_type=client_credentials
