@@ -26,6 +26,19 @@ class UserRestController extends Controller
         return $user;
     }
 
+    public function getMeAction() {
+        $user = $this->get('security.context')->getToken()->getUser();
+
+        if ($user) {
+            return $user;
+        }
+
+        return new JsonResponse(array(
+            'message' => 'Vous n\'êtes pas identifié'
+        ));
+
+    }
+
     public function getMenAction(){
         $men = $this->getDoctrine()->getRepository('CelibattanteUserBundle:User')->findByGenre("M");
         if (!is_array($men)) {
