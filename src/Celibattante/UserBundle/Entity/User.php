@@ -10,11 +10,11 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
- * 
+ *
  * @ORM\Table(name="user")
  * @ORM\Entity
- * 
- * @ExclusionPolicy("all") 
+ *
+ * @ExclusionPolicy("ALL")
  */
 class User extends BaseUser
 {
@@ -22,7 +22,6 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Expose
      */
     protected $id;
 
@@ -31,7 +30,6 @@ class User extends BaseUser
      *
      * @ORM\Column(name="genre", type="string", length=1)
      * @Expose
-     * @Groups({"Details"})
      */
     private $genre;
 
@@ -48,6 +46,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="description", type="text", length=500)
      * @Expose
+     * @Groups({"Details"})
      */
     private $description;
 
@@ -62,12 +61,14 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="Celibattante\ChallengeBundle\Entity\ChallengeLaunched", mappedBy="user")
      * @Expose
+     * @Groups({"ChallengeLaunched"})
      */
     private $challengeLaunched;
 
     /**
      * @ORM\OneToMany(targetEntity="Celibattante\ChallengeBundle\Entity\ChallengeRaised", mappedBy="user")
      * @Expose
+     * @Groups({"ChallengeRaised"})
      */
     private $challengeRaised;
 
@@ -80,7 +81,7 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -103,7 +104,7 @@ class User extends BaseUser
     /**
      * Get genre
      *
-     * @return string 
+     * @return string
      */
     public function getGenre()
     {
@@ -126,7 +127,7 @@ class User extends BaseUser
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -149,7 +150,7 @@ class User extends BaseUser
     /**
      * Get description
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDescription()
     {
@@ -172,7 +173,7 @@ class User extends BaseUser
     /**
      * Get birthdate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthdate()
     {
@@ -205,7 +206,7 @@ class User extends BaseUser
     /**
      * Get challengeLaunched
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChallengeLaunched()
     {
@@ -238,7 +239,7 @@ class User extends BaseUser
     /**
      * Get challengeRaised
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChallengeRaised()
     {

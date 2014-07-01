@@ -30,12 +30,10 @@ class UserRestController extends Controller
    *
    * @param type $username
    *
-   * @View(serializerGroups={"Me"})
+   * @View(serializerGroups={"Default"})
    */
     public function getMeAction() {
-        var_dump($this->getUser());
-        exit();
-        $user = $this->get('security.context')->getToken()->getUser();
+        $user = $this->getUser();
 
         if ($user) {
             return $user;
@@ -47,6 +45,13 @@ class UserRestController extends Controller
 
     }
 
+
+    /**
+   *
+   * @param type $username
+   *
+   * @View(serializerGroups={"Default"})
+   */
     public function getUserMenAction(){
         $men = $this->getDoctrine()->getRepository('CelibattanteUserBundle:User')->findByGenre("M");
         if (!is_array($men)) {
@@ -55,6 +60,12 @@ class UserRestController extends Controller
         return $men;
     }
 
+    /**
+   *
+   * @param type $username
+   *
+   * @View(serializerGroups={"Default"})
+   */
     public function getUserWomenAction(){
         $women = $this->getDoctrine->getRepository('CelibattanteUserBundle:User')->findByGenre("F");
         if (!is_array($women)) {
