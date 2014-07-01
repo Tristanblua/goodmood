@@ -22,11 +22,12 @@ class UserRestController extends Controller
         if(!is_object($user)){
             throw $this->createNotFoundException();
         }
-
         return $user;
     }
 
     public function getMeAction() {
+        var_dump($this->getUser());
+        exit();
         $user = $this->get('security.context')->getToken()->getUser();
 
         if ($user) {
@@ -39,7 +40,7 @@ class UserRestController extends Controller
 
     }
 
-    public function getMenAction(){
+    public function getUserMenAction(){
         $men = $this->getDoctrine()->getRepository('CelibattanteUserBundle:User')->findByGenre("M");
         if (!is_array($men)) {
             throw $this->createNotFoundException();
@@ -47,7 +48,7 @@ class UserRestController extends Controller
         return $men;
     }
 
-    public function getWomenAction(){
+    public function getUserWomenAction(){
         $women = $this->getDoctrine->getRepository('CelibattanteUserBundle:User')->findByGenre("F");
         if (!is_array($women)) {
             throw $this->createNotFoundException();
