@@ -84,20 +84,8 @@ class ChallengeSuper
             $extension = 'bin';
         }
 
-        $input = date('Ymd').'_'.uniqid() .'.'.$extension;
-        $this->path = date('Ymd').'_'.uniqid().'FF.mp4';
-
-        $this->file->move($this->getUploadRootDir(), $input);
-        chmod($this->getUploadRootDir()."/".$input, 0777);
-
-
-        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
-        $this->file = null;
-
-
-        $cmd = "ffmpeg -i ". $this->getUploadRootDir()."/".$input ." -vcodec libx264 -vprofile baseline -preset slow -b:v 250k -maxrate 250k -bufsize 500k -vf scale=-1:360 -threads 0 -acodec libfdk_aac -ab 96k ". $this->getUploadRootDir()."/".$this->path ." 2>&1";
-        echo shell_exec($cmd);
-
+        $this->path = date('Ymd').'_'.uniqid() .'.'.$extension;
+        $this->file->move($this->getUploadRootDir(), $this->path );
         chmod($this->getUploadRootDir()."/".$this->path, 0777);
 
     }
