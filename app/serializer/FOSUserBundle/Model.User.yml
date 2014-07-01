@@ -3,4 +3,4 @@ FOS\UserBundle\Model\User:
     properties:
         username:
             expose: true
-            groups: me
+            groups: [me]
