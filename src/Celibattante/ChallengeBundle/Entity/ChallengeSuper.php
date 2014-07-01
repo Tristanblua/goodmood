@@ -85,7 +85,7 @@ class ChallengeSuper
         }
 
         $input = date('Ymd').'_'.uniqid() .'.'.$extension;
-        $this->path = date('Ymd').'_'.uniqid().'.mp4';
+        $this->path = date('Ymd').'_'.uniqid().'FF.mp4';
 
         $this->file->move($this->getUploadRootDir(), $input);
         chmod($this->getUploadRootDir()."/".$input, 777);

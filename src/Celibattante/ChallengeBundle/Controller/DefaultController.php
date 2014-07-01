@@ -17,6 +17,9 @@ class DefaultController extends Controller
      */
     public function uploadAction()
     {
+        var_dump(posix_getpwuid(posix_geteuid()));
+        exit();
+        return ;
         $challengeLaunched = new ChallengeLaunched();
         $form = $this->createFormBuilder($challengeLaunched, array('csrf_protection' => false))
             ->add('title')
