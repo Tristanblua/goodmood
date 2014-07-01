@@ -5,6 +5,7 @@ namespace Celibattante\ChallengeBundle\Controller;
 use FOS\RestBundle\Controller\Annotations\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Request;
 use Celibattante\ChallengeBundle\Entity\ChallengeLaunched;
 use Celibattante\ChallengeBundle\Entity\ChallengeRaised;
 use Celibattante\ChallengeBundle\Entity\ChallengeSuper;
@@ -31,30 +32,26 @@ class ChallengeRestController extends Controller
     }
 
 
-    public function postChallengeLaunchedAction()
+    public function postChallengeLaunchedAction(Request $request)
     {
         $challengeLaunched = new ChallengeLaunched();
-        $form = $this->createFormBuilder($challengeLaunched)
+        $form = $this->createFormBuilder($challengeLaunched, array('csrf_protection' => false))
             ->add('title')
             ->add('file')
             ->getForm();
         ;
 
-        if ($this->getRequest()->isMethod('POST')) {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
+        $form->bind($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $challengeLaunched->upload();
+            $em->persist($challengeLaunched);
+            $em->flush();
 
-                $em->persist($challengeLaunched);
-                $em->flush();
-
-                return $challengeLaunched;
-            } else {
-                $serializer = SerializerBuilder::create()->build();
-                return $form->getErrors();
-            }
-        } else  {
-            throw $this->createNotFoundException();
+            return $challengeLaunched;
+        } else {
+            $serializer = SerializerBuilder::create()->build();
+            return $form->getErrors();
         }
     }
 

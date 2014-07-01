@@ -10,45 +10,26 @@ use Celibattante\ChallengeBundle\Entity\ChallengeLaunched;
 
 class DefaultController extends Controller
 {
-    
+
     /**
      * @Route("/upload")
      * @Template()
      */
     public function uploadAction()
-    {   
-        $document = new Upload;
-        $form = $this->createFormBuilder($document)
-            ->add('description')
-            ->add('creation_date')
-            ->add('count')
+    {
+        $challengeLaunched = new ChallengeLaunched();
+        $form = $this->createFormBuilder($challengeLaunched, array('csrf_protection' => false))
+            ->add('title')
             ->add('file')
             ->getForm();
+        ;
 
-        if ($this->getRequest()->isMethod('POST')) {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $document->upload();
-
-                $em->persist($document);
-                $em->flush();
-
-                $this->redirect($this->generateUrl("celibattante_upload_upload_upload"));
-
-            }
-        } else {
-
-        }
-
-
-        return new Response(); 
-        //return array('form' => $form->createView());
+        return array('form' => $form->createView());
     }
 
     /**
     * @Route("/listChallenge")
-    * @Template()  
+    * @Template()
     */
     public function listChallengeAction()
     {
@@ -62,13 +43,13 @@ class DefaultController extends Controller
 
         $serializer = $this->container->get('serializer');
         $reports = $serializer->serialize($videos, 'json');
-        return new Response($reports); 
+        return new Response($reports);
 
     }
 
     /**
     * @Route("/listMen")
-    * @Template()  
+    * @Template()
     */
     public function listMenAction()
     {

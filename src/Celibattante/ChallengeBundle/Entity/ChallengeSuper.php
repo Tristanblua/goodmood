@@ -20,7 +20,7 @@ class ChallengeSuper
 	/**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=140)
+     * @ORM\Column(name="description", type="string", length=140, nullable=true)
      * @Expose
      */
     private $description;
@@ -84,19 +84,21 @@ class ChallengeSuper
             $extension = 'bin';
         }
 
-        $fileName = date('Ymd').'_'.uniqid().'.'.$extension;
-        $this->file->move($this->getUploadRootDir(), $fileName);
+        $fileName = date('Ymd').'_'.uniqid();
+        $input = $fileName .'.'.$extension;
+        $this->file->move($this->getUploadRootDir(), $input);
+        chmod($this->getUploadRootDir()."/".$input, 777);
 
-        $this->path = $this->getUploadRootDir() . '/' . $fileName;
+        $this->path = $fileName .'.mp4';
 
         // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
         $this->file = null;
 
-        // echo 'Vidéo enregistrée';
+
+        $cmd = "ffmpeg -i ". $this->getUploadRootDir()."/".$input ." -vcodec libx264 -vprofile baseline -preset slow -b:v 250k -maxrate 250k -bufsize 500k -vf scale=-1:360 -threads 0 -acodec libfdk_aac -ab 96k ". $this->getUploadRootDir()."/".$this->path ." 2>&1";
+        shell_exec($cmd);
+
         chmod($this->path, 777);
-        $cmd = "ffmpeg -i ". $this->path ." -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 '". $this->getUploadRootDir() ."/output.mp4' 2>&1";
-        echo $cmd;
-        echo exec($cmd);
     }
 
 
