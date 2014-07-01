@@ -54,7 +54,7 @@ class ChallengeSuper
     public $count;
 
     /**
-     * @Assert\File(maxSize="2000000")
+     * @Assert\File(maxSize="30M")
      */
     public $file;
 
