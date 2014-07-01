@@ -25,6 +25,13 @@ class UserRestController extends Controller
         return $user;
     }
 
+
+    /**
+   *
+   * @param type $username
+   *
+   * @View(serializerGroups={"Me"})
+   */
     public function getMeAction() {
         var_dump($this->getUser());
         exit();
