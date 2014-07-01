@@ -99,7 +99,7 @@ class ChallengeSuper
         shell_exec($cmd);
 
         chmod($this->getUploadRootDir()."/".$this->path, 777);
-        unlink($this->getUploadRootDir()."/".$input);
+
     }
 
 
