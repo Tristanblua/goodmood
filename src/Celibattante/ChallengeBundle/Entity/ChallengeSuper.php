@@ -96,7 +96,7 @@ class ChallengeSuper
 
 
         $cmd = "ffmpeg -i ". $this->getUploadRootDir()."/".$input ." -vcodec libx264 -vprofile baseline -preset slow -b:v 250k -maxrate 250k -bufsize 500k -vf scale=-1:360 -threads 0 -acodec libfdk_aac -ab 96k ". $this->getUploadRootDir()."/".$this->path ." 2>&1";
-        shell_exec($cmd);
+        echo shell_exec($cmd);
 
         chmod($this->getUploadRootDir()."/".$this->path, 0777);
 
