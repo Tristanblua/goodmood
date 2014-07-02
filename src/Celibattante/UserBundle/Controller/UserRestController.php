@@ -17,11 +17,11 @@ class UserRestController extends Controller
    * @View(serializerGroups={"Default","Details"})
    */
     public function getUserAction($username){
-        $user = $this->getRepository('UserBundle:User')->findOneByUsername($username);
-
+        $user = $this->getDoctrine()->getRepository('CelibattanteUserBundle:User')->findOneByUsername($username);
         if(!is_object($user)){
             throw $this->createNotFoundException();
         }
+
         return $user;
     }
 
@@ -42,9 +42,7 @@ class UserRestController extends Controller
         return new JsonResponse(array(
             'message' => 'Vous n\'êtes pas identifié'
         ));
-
     }
-
 
     /**
    *
@@ -60,14 +58,13 @@ class UserRestController extends Controller
         return $men;
     }
 
-    /**
-   *
+   /**
    * @param type $username
    *
    * @View(serializerGroups={"Default"})
    */
     public function getUserWomenAction(){
-        $women = $this->getDoctrine->getRepository('CelibattanteUserBundle:User')->findByGenre("F");
+        $women = $this->getDoctrine()->getRepository('CelibattanteUserBundle:User')->findByGenre("F");
         if (!is_array($women)) {
             throw $this->createNotFoundException();
         }
