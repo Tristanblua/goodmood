@@ -18,6 +18,7 @@ class UserRestController extends Controller
    */
     public function getUserAction($username){
         $user = $this->getDoctrine()->getRepository('CelibattanteUserBundle:User')->findOneByUsername($username);
+        $user->calcAge();
         if(!is_object($user)){
             throw $this->createNotFoundException();
         }

@@ -51,13 +51,6 @@ class User extends BaseUser
     private $description;
 
     /**
-     * @var int
-     *
-     * @Expose
-     */
-    private $age;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="birthdate", type="date")
@@ -173,12 +166,6 @@ class User extends BaseUser
     public function setBirthdate($birthdate)
     {
         $this->birthdate = $birthdate;
-
-        $dateNow = new \DateTime;
-        $diff = $dateNow->diff($dateFrom);
-
-        $this->age = $diff->format('%y');
-
         return $this;
     }
 
@@ -258,14 +245,4 @@ class User extends BaseUser
         return $this->challengeRaised;
     }
 
-
-    public function getAge() {
-        return $this->age;
-    }
-
-    public function setAge($age) {
-        $this->age = $age;
-
-        return $this;
-    }
 }
